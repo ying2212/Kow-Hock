@@ -1,0 +1,157 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// Enums
+enum UserRole {
+  ADMIN
+  STAFF
+  CUSTOMER
+  DRIVER
+}
+
+enum OrderStatus {
+  PENDING
+  PACKED
+  OUT_FOR_DELIVERY
+  DELIVERED
+  CANCELLED
+}
+
+enum LorryStatus {
+  IDLE
+  DELIVERING
+  MAINTENANCE
+}
+
+enum DeliveryStatus {
+  ASSIGNED
+  PICKED_UP
+  DELIVERING
+  DELIVERED
+}
+
+// Models
+model User {
+  id        Int       @id @default(autoincrement())
+  name      String
+  phone     String   @unique
+  email     String?   @unique
+  password  String?
+  role      UserRole @default(CUSTOMER)
+  createdAt DateTime @default(now())
+
+  orders     Order[]
+}
+model OtpCode {
+  id        Int      @id @default(autoincrement())
+  phone     String
+  code      String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model Store {
+  id          Int       @id @default(autoincrement())
+  name        String
+  address     String
+  description String?
+  createdAt   DateTime  @default(now())
+
+  stocks Stock[]
+  orders Order[]
+}
+
+model Product {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  unit        String
+  price       Float
+  createdAt   DateTime  @default(now())
+  imageUrl    String?
+  stocks     Stock[]
+  orderItems OrderItem[]
+}
+
+model Stock {
+  id        Int     @id @default(autoincrement())
+  store     Store   @relation(fields: [storeId], references: [id])
+  storeId   Int
+  product   Product @relation(fields: [productId], references: [id])
+  productId Int
+  quantity  Int
+  updatedAt DateTime @updatedAt
+}
+
+model Order {
+  id              Int         @id @default(autoincrement())
+  orderNumber     String      @unique
+  customer        User        @relation(fields: [customerId], references: [id])
+  customerId      Int
+  store           Store       @relation(fields: [storeId], references: [id])
+  storeId         Int
+  status          OrderStatus @default(PENDING)
+  totalPrice      Float
+  deliveryAddress String
+  createdAt       DateTime    @default(now())
+
+  items      OrderItem[]
+  deliveries Delivery[]
+}
+
+model OrderItem {
+  id          Int     @id @default(autoincrement())
+  order       Order   @relation(fields: [orderId], references: [id])
+  orderId     Int
+  product     Product @relation(fields: [productId], references: [id])
+  productId   Int
+  quantity    Int
+  priceAtTime Float
+}
+
+model Lorry {
+  id          Int         @id @default(autoincrement())
+  plateNumber String      @unique
+  capacity    Float
+  status      LorryStatus @default(IDLE)
+
+  deliveries Delivery[]
+  gpsLogs    GpsLog[]
+  drivers    Driver[]
+}
+
+model Driver {
+  id       Int   @id @default(autoincrement())
+  name     String
+  lorry    Lorry @relation(fields: [lorryId], references: [id])
+  lorryId  Int
+
+  deliveries Delivery[]
+}
+
+model Delivery {
+  id        Int           @id @default(autoincrement())
+  order     Order         @relation(fields: [orderId], references: [id])
+  orderId   Int
+  lorry     Lorry         @relation(fields: [lorryId], references: [id])
+  lorryId   Int
+  driver    Driver        @relation(fields: [driverId], references: [id])
+  driverId  Int
+  status    DeliveryStatus @default(ASSIGNED)
+}
+
+model GpsLog {
+  id        Int     @id @default(autoincrement())
+  lorry     Lorry   @relation(fields: [lorryId], references: [id])
+  lorryId   Int
+  latitude  Float
+  longitude Float
+  timestamp DateTime @default(now())
+}
