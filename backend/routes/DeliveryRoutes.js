@@ -4,12 +4,12 @@ import {
   createDelivery, 
   updateDeliveryStatus 
 } from "../controllers/DeliveryController.js";
-import { authMiddleWare } from "../middleware/auth.js";
+import { authMiddleWare as authMiddleware } from "../middleware/auth.js";
 
 const router = Router();
 
-router.get("/", authMiddleWare, getDeliveries);
-router.post("/", authMiddleWare, createDelivery);
-router.patch("/:id/status", authMiddleWare, updateDeliveryStatus);
+router.get("/", authMiddleware, getDeliveries);
+router.post("/", authMiddleware, createDelivery);
+router.patch("/:id/status", authMiddleware, updateDeliveryStatus);
 
 export default router;
