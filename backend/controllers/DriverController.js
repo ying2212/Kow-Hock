@@ -14,10 +14,14 @@ export const getDrivers = async (req, res, next) => {
 export const createDriver = async (req, res, next) => {
   try {
     const { name, lorryId } = req.body;
+    if(!name || !lorryId) {
+      return res.status(400).json({ error: "Name and Lorry ID are required" });
+    }
     const driver = await prisma.driver.create({
-      data: { name, lorryId }
+      data: { name, lorryId },
+      include: { lorry: true }
     });
-    res.json(driver);
+    res.status(201).json(driver);
   } catch (e) {
     next(e);
   }

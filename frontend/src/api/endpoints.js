@@ -9,11 +9,11 @@ export const USER = {
 };
 
 export const PRODUCT = {
-  GET_ALL: "/api/products/products",
-  GET_ONE: (id) => `/api/products/products/${id}`,
-  CREATE: "/api/products/products",
-  UPDATE: (id) => `/api/products/products/${id}`,
-  DELETE: (id) => `/api/products/products/${id}`,
+  GET_ALL: "/api/products",
+  GET_ONE: (id) => `/api/products/${id}`,
+  CREATE: "/api/products",
+  UPDATE: (id) => `/api/products/${id}`,
+  DELETE: (id) => `/api/products/${id}`,
 };
 
 export const ORDER = {

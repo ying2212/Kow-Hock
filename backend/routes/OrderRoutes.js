@@ -9,8 +9,8 @@ import { authMiddleWare } from "../middleware/auth.js";
 
 const router = Router();
 
-router.get("/", getOrders);
-router.get("/:id", getOrderById);
+router.get("/", authMiddleWare, getOrders);
+router.get("/:id", authMiddleWare, getOrderById);
 router.post("/", authMiddleWare, createOrder);
 router.patch("/:id/status", authMiddleWare, updateOrderStatus);
 

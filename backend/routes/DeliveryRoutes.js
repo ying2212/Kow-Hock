@@ -8,7 +8,7 @@ import { authMiddleWare } from "../middleware/auth.js";
 
 const router = Router();
 
-router.get("/", getDeliveries);
+router.get("/", authMiddleWare, getDeliveries);
 router.post("/", authMiddleWare, createDelivery);
 router.patch("/:id/status", authMiddleWare, updateDeliveryStatus);
 

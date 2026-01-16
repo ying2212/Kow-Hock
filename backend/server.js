@@ -36,13 +36,13 @@ app.get("/", (req, res) => {
   });
 });
 
-// Error handler (must be last)
-app.use(errorHandler);
-
-// 404 handler
+// 404 handler (for unmatched routes)
 app.use((req, res) => {
   res.status(404).json({ error: "Route not found" });
 });
+
+// Error handler (for thrown errors)
+app.use(errorHandler);
 
 // Start server
 const PORT = process.env.PORT || 8000;
