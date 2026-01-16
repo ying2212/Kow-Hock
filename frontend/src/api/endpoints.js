@@ -1,32 +1,35 @@
-// Central place to store all backend routes
-
 export const AUTH = {
-    SEND_OTP: "/auth/send-otp",
-    VERIFY_OTP: "/auth/verify-otp",
-    ME: "/auth/me",
-  };
-  
-  export const USER = {
-    PROFILE: "/user/profile",
-    UPDATE_PROFILE: "/user/update",
-  };
-  
-  export const PRODUCT = {
-    CREATE: "/product/post-lost-item",
-    GET_ALL: "/product/retrieve-item-posts",
-    DELETE: (id) => `/product/delete-item-post/${id}`,
-    CLAIM: (id) => `/product/claim/${id}`,
-  };
-  
-  export const ORDER = {
-    CREATE: "/orders/create",
-    GET_ALL: "/orders",
-    GET_ONE: (id) => `/orders/${id}`,
-    UPDATE_STATUS: (id) => `/orders/update/${id}`,
-  };
-  
-  export const DELIVERY = {
-    GET_ALL: "/deliveries",
-    UPDATE: (id) => `/deliveries/update/${id}`,
-  };
-  
+  SEND_OTP: "/api/users/send-otp",
+  VERIFY_OTP: "/api/users/verify-otp",
+  ME: "/api/users/me",
+};
+
+export const USER = {
+  PROFILE: "/api/users/me",
+};
+
+export const PRODUCT = {
+  GET_ALL: "/api/products/products",
+  GET_ONE: (id) => `/api/products/products/${id}`,
+  CREATE: "/api/products/products",
+  UPDATE: (id) => `/api/products/products/${id}`,
+  DELETE: (id) => `/api/products/products/${id}`,
+};
+
+export const ORDER = {
+  CREATE: "/api/orders",
+  GET_ALL: "/api/orders",
+  GET_ONE: (id) => `/api/orders/${id}`,
+  UPDATE_STATUS: (id) => `/api/orders/${id}/status`,
+};
+
+export const DELIVERY = {
+  GET_ALL: "/api/deliveries",
+  CREATE: "/api/deliveries",
+  UPDATE_STATUS: (id) => `/api/deliveries/${id}/status`,
+};
+
+export const DRIVER = {
+  GET_ALL: "/api/drivers",
+  CREATE: "/api/drivers",
+};
