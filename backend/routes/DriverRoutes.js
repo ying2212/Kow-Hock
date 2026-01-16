@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { authMiddleWare } from "../middleware/auth.js";
+import { authMiddleWare as authMiddleware } from "../middleware/auth.js";
 import { createDriver, getDrivers } from "../controllers/DriverController.js";
 
 const router = Router();
 
-router.get("/", authMiddleWare, getDrivers);
-router.post("/", authMiddleWare, createDriver);
+router.get("/", authMiddleware, getDrivers);
+router.post("/", authMiddleware, createDriver);
 
 export default router;
