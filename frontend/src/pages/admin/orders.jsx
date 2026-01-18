@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { MapPin, Phone, Mail, Package } from "lucide-react";
-import api from "../../api/axios";
-import { ORDER } from "../../api/endpoints";
+import { getAllOrders, getOrder, createOrder, updateOrderStatus } from "/src/api/endpoints";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
@@ -15,20 +14,21 @@ const Orders = () => {
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const response = await api.get(ORDER.GET_ALL);
+      const response = await getAllOrders();
       setOrders(response.data);
     } catch (error) {
       console.error("Failed to fetch orders:", error);
       // Fallback to mock data if API fails
       setOrders([
-        { id: 1, orderNumber: "#3565432", customer: { name: "John Doe" }, deliveryAddress: "123 Main St", status: "PENDING", totalPrice: 150.50 },
-        { id: 2, orderNumber: "#483920", customer: { name: "Alice Tan" }, deliveryAddress: "45 Jalan Bukit", status: "OUT_FOR_DELIVERY", totalPrice: 89.00 },
+        { id: 1, orderNumber: "#3565432", customer: { name: "John Doe" }, deliveryAddress: "123 Main St", status: "PENDING", totalPrice: 150.5 },
+        { id: 2, orderNumber: "#483920", customer: { name: "Alice Tan" }, deliveryAddress: "45 Jalan Bukit", status: "OUT_FOR_DELIVERY", totalPrice: 89.0 },
         { id: 3, orderNumber: "#1442654", customer: { name: "Michael Lee" }, deliveryAddress: "78 Orchard Rd", status: "DELIVERED", totalPrice: 200.75 },
       ]);
     } finally {
       setLoading(false);
     }
   };
+  
 
   const getStatusLabel = (status) => {
     const labels = {

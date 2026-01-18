@@ -1,32 +1,33 @@
-// Central place to store all backend routes
+import api from "./axios";
 
-export const AUTH = {
-    SEND_OTP: "/auth/send-otp",
-    VERIFY_OTP: "/auth/verify-otp",
-    ME: "/auth/me",
-  };
-  
-  export const USER = {
-    PROFILE: "/user/profile",
-    UPDATE_PROFILE: "/user/update",
-  };
-  
-  export const PRODUCT = {
-    CREATE: "/product/post-lost-item",
-    GET_ALL: "/product/retrieve-item-posts",
-    DELETE: (id) => `/product/delete-item-post/${id}`,
-    CLAIM: (id) => `/product/claim/${id}`,
-  };
-  
-  export const ORDER = {
-    CREATE: "/orders/create",
-    GET_ALL: "/orders",
-    GET_ONE: (id) => `/orders/${id}`,
-    UPDATE_STATUS: (id) => `/orders/update/${id}`,
-  };
-  
-  export const DELIVERY = {
-    GET_ALL: "/deliveries",
-    UPDATE: (id) => `/deliveries/update/${id}`,
-  };
-  
+// ===== AUTH =====
+export const sendOtp = (data) => api.post("/api/users/send-otp", data);
+export const verifyOtp = (data) => api.post("/api/users/verify-otp", data);
+export const getMe = () => api.get("/api/users/me");
+
+// ===== USER =====
+export const getProfile = () => api.get("/api/users/me");
+
+// ===== PRODUCT =====
+export const getAllProducts = () => api.get("/api/products");
+export const getProduct = (id) => api.get(`/api/products/${id}`);
+export const createProduct = (data) => api.post("/api/products", data);
+export const updateProduct = (id, data) => api.put(`/api/products/${id}`, data);
+export const deleteProduct = (id) => api.delete(`/api/products/${id}`);
+
+// ===== ORDER =====
+export const createOrder = (data) => api.post("/api/orders", data);
+export const getAllOrders = () => api.get("/api/orders");
+export const getOrder = (id) => api.get(`/api/orders/${id}`);
+export const updateOrderStatus = (id, data) =>
+  api.patch(`/api/orders/${id}/status`, data);
+
+// ===== DELIVERY =====
+export const getAllDeliveries = () => api.get("/api/deliveries");
+export const createDelivery = (data) => api.post("/api/deliveries", data);
+export const updateDeliveryStatus = (id, data) =>
+  api.patch(`/api/deliveries/${id}/status`, data); 
+
+// ===== DRIVER =====
+export const getAllDrivers = () => api.get("/api/drivers");
+export const createDriver = (data) => api.post("/api/drivers", data);

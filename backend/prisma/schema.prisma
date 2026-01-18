@@ -44,7 +44,7 @@ model User {
   phone     String   @unique
   email     String?   @unique
   password  String?
-  role      UserRole @default(CUSTOMER)
+  role      UserRole @default(ADMIN)
   createdAt DateTime @default(now())
 
   orders     Order[]
@@ -118,9 +118,10 @@ model OrderItem {
 
 model Lorry {
   id          Int         @id @default(autoincrement())
+  lorryNumber String      @unique
   plateNumber String      @unique
-  capacity    Float
-  status      LorryStatus @default(IDLE)
+  capacity    Float?
+  status      LorryStatus @default(DELIVERING)
 
   deliveries Delivery[]
   gpsLogs    GpsLog[]
