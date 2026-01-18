@@ -1,6 +1,6 @@
 import express from "express";
 import { sendOtp, verifyOtp, getCurrentUser } from "../handler/AuthHandler.js";
-import { authMiddleware } from "../middleware/auth.js";
+import { authMiddleWare as authMiddleware } from "../middleware/auth.js";
 
 const router = express.Router();
 

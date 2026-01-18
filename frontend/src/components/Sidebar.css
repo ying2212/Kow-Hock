@@ -1,0 +1,110 @@
+/* Sidebar container */
+.sidebar {
+    width: 260px;
+    background: white;
+    border-right: 1px solid #e5e7eb;
+    transition: width 0.3s ease;
+    overflow: hidden;
+}
+  
+.sidebar.hidden {
+    width: 0;
+}
+  
+/* Sidebar content */
+.sidebarContent {
+    padding: 24px;
+}
+  
+/* Brand + User Info wrapper */
+.brandUserWrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+  
+/* Brand icon */
+.brandIcon {
+    width: 40px;
+    height: 40px;
+    background: #000000;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #FFCC00;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+/* User info */
+.sidebarUserInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.userName {
+    font-weight: 600;
+    color: #374151;
+    font-size: 14px;
+}
+
+.userPhone {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+
+/* Search box */
+.searchBox {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.searchBox input {
+    width: 80%;
+    padding: 8px 12px 8px 36px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    font-size: 14px;
+}
+
+.searchBox svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+}
+
+/* Navigation links */
+.nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    color: #374151;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.nav a:hover {
+    background: #fcf3cf;
+}
+
+.nav a.active {
+    background: #fff0b3;
+    color:black;
+    font-weight: 500;
+}

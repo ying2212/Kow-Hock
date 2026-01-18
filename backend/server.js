@@ -7,6 +7,7 @@ import driversRoutes from "./routes/DriverRoutes.js";
 import orderRoutes from "./routes/OrderRoutes.js";
 import deliveriesRoutes from "./routes/DeliveryRoutes.js";
 import errorHandler from "./handler/errorHandler.js";
+import lorryRoutes from "./routes/LorryRoutes.js";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/drivers", driversRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/deliveries", deliveriesRoutes);
+app.use("/api/lorries", lorryRoutes);
 
 // Health check
 app.get("/", (req, res) => {

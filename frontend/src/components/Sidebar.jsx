@@ -1,24 +1,27 @@
-// ============================================
-// FILE: src/components/Sidebar.jsx
-// ============================================
 import { useState } from 'react';
 import { Package, Truck, Users, Settings, Inbox, Search } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
+import './Sidebar.css';
 
 const Sidebar = ({ isOpen }) => {
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
   const [search, setSearch] = useState('');
+
+  const firstLetter = user.name ? user.name.charAt(0).toUpperCase() : "A";
 
   return (
     <div className={`sidebar ${!isOpen ? 'hidden' : ''}`}>
       <div className="sidebarContent">
-        <div className="brand">
-          <div className="brandIcon">K</div>
-          <div>
-            <h3>Kow Hock</h3>
-            <p>admin@kowhock.com</p>
+        {/* Brand + User Info */}
+        <div className="brandUserWrapper">
+          <div className="brandIcon">{firstLetter}</div>
+          <div className="sidebarUserInfo">
+            <div className="userName">{user.name || "Admin"}</div>
+            <div className="userPhone">{user.phone || "No Phone"}</div>
           </div>
         </div>
 
+        {/* Search */}
         <div className="searchBox">
           <Search size={16} />
           <input
@@ -28,6 +31,7 @@ const Sidebar = ({ isOpen }) => {
           />
         </div>
 
+        {/* Navigation */}
         <nav className="nav">
           <NavLink to="/admin/orders" className={({ isActive }) => isActive ? 'active' : ''}>
             <Package size={18} /> Orders
