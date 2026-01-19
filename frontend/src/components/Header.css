@@ -5,15 +5,23 @@
     background: white;
     padding: 16px 24px;
     border-bottom: 1px solid #e5e7eb;
-  }
-  
-  .headerTitle {
+}
+
+.headerTitle {
     font-size: 20px;
     font-weight: 600;
-    margin: 0;
-  }
-  
-  .logoutBtn {
+margin: 0;
+}
+
+button {
+    margin-right: 16px;
+    padding: 8px;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.logoutBtn {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -26,15 +34,14 @@
     font-size: 14px;
     font-weight: 500;
     transition: all 0.2s;
-  }
-  
-  .logoutBtn:hover {
+}
+
+.logoutBtn:hover {
     background: #fecaca;
     transform: translateY(-1px);
-  }
-  
-  .logoutBtn svg {
+}
+
+.logoutBtn svg {
     width: 18px;
     height: 18px;
-  }
-  
+}

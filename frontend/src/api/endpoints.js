@@ -31,3 +31,11 @@ export const updateDeliveryStatus = (id, data) =>
 // ===== DRIVER =====
 export const getAllDrivers = () => api.get("/api/drivers");
 export const createDriver = (data) => api.post("/api/drivers", data);
+
+// ==== STORE =====
+export const getAllStores = () => api.get("/api/stores");
+export const getStoreById = (id) => api.get(`/api/stores/${id}`);
+export const createStore = (data) => api.post("/api/stores", data);
+export const updateStore = (id, data) => api.put(`/api/stores/${id}`, data);
+
+
