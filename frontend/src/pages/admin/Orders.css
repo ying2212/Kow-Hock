@@ -1,0 +1,489 @@
+/* Orders Page Layout */
+.ordersPage {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #f5f6f8;
+  }
+  
+  .ordersHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .ordersHeaderLeft h2 {
+    margin: 0 0 4px 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f2937;
+  }
+  
+  .ordersCount {
+    margin: 0;
+    font-size: 14px;
+    color: #6b7280;
+  }
+  
+  .createOrderBtn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  
+  .createOrderBtn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+  }
+  
+  /* Modal Overlay */
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Create Order Modal */
+  .createOrderModal {
+    background: white;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  
+  .modalHeader h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1f2937;
+  }
+  
+  .closeModalBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+    transition: all 0.2s;
+  }
+  
+  .closeModalBtn:hover {
+    background: #f3f4f6;
+    color: #1f2937;
+  }
+  
+  /* Order Form */
+  .orderForm {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .formRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .formGroup label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+  }
+  
+  .formGroup input,
+  .formGroup textarea {
+    padding: 10px 14px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  
+  .formGroup input:focus,
+  .formGroup textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+  
+  .formGroup textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+  
+  /* Modal Footer */
+  .modalFooter {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 4px;
+  }
+  
+  .cancelBtn {
+    padding: 10px 20px;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+    transition: all 0.2s;
+  }
+  
+  .cancelBtn:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+  }
+  
+  .submitBtn {
+    padding: 10px 20px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  
+  .submitBtn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+  }
+  
+  /* Empty State */
+  .emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+    color: #9ca3af;
+  }
+  
+  .emptyState svg {
+    margin-bottom: 16px;
+    opacity: 0.5;
+  }
+  
+  .emptyState p {
+    margin: 0 0 20px 0;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  /* Content Area */
+  .content {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+  }
+  
+  .list {
+    width: 380px;
+    background: white;
+    border-right: 1px solid #e5e7eb;
+    padding: 16px;
+    overflow-y: auto;
+  }
+  
+  /* Order Cards */
+  .card {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+  }
+  
+  .card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transform: translateY(-1px);
+  }
+  
+  .card.active {
+    border-color: #2563eb;
+    background: #eff6ff;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+  
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  
+  .orderInfo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .orderInfo h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1f2937;
+  }
+  
+  .cardBody {
+    margin-bottom: 12px;
+  }
+  
+  .customerName {
+    font-weight: 600;
+    margin: 0 0 6px 0;
+    font-size: 15px;
+    color: #374151;
+  }
+  
+  .address {
+    color: #6b7280;
+    margin: 0 0 10px 0;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  
+  .price {
+    font-weight: 700;
+    color: #059669;
+    margin: 0;
+    font-size: 17px;
+  }
+  
+  .cardFooter {
+    display: flex;
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid #f3f4f6;
+  }
+  
+  .iconBtn {
+    padding: 8px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    color: #6b7280;
+  }
+  
+  .iconBtn:hover {
+    background: #f9fafb;
+    border-color: #cbd5e1;
+    color: #374151;
+  }
+  
+  /* Map/Details Area */
+  .map {
+    flex: 1;
+    background: #f9fafb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+  }
+  
+  .mapPlaceholder {
+    text-align: center;
+    color: #9ca3af;
+  }
+  
+  .mapPlaceholder svg {
+    margin-bottom: 16px;
+    opacity: 0.5;
+  }
+  
+  .mapPlaceholder p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  
+  .mapContent {
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .mapIcon {
+    color: #2563eb;
+    margin-bottom: 20px;
+  }
+  
+  .mapDetails h3 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1f2937;
+  }
+  
+  .mapDetails .customerName {
+    font-size: 16px;
+    color: #6b7280;
+    margin-bottom: 12px;
+  }
+  
+  .mapAddress {
+    color: #6b7280;
+    margin: 12px 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  .mapPrice {
+    font-size: 24px;
+    font-weight: 700;
+    color: #059669;
+    margin-top: 16px;
+  }
+  
+  /* Badges */
+  .badge {
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    margin: 8px 0;
+  }
+  
+  .badge.pending {
+    background: #fef3c7;
+    color: #92400e;
+  }
+  
+  .badge.packed {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+  
+  .badge.transit {
+    background: #ede9fe;
+    color: #5b21b6;
+  }
+  
+  .badge.delivered {
+    background: #dcfce7;
+    color: #166534;
+  }
+  
+  .badge.cancelled {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+  
+  /* Loading State */
+  .loadingContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #6b7280;
+    font-size: 16px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .content {
+      flex-direction: column;
+    }
+    .list {
+      width: 100%;
+      max-height: 50vh;
+    }
+    .map {
+      padding: 20px;
+    }
+    .formRow {
+      grid-template-columns: 1fr;
+    }
+    .createOrderModal {
+      width: 95%;
+    }
+  }

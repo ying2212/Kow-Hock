@@ -1,8 +1,9 @@
 import { LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { Menu,X } from 'lucide-react';
 import './Header.css';
 
-const Header = () => {
+const Header = ({ sidebarOpen, setSidebarOpen }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -13,6 +14,13 @@ const Header = () => {
 
   return (
     <div className="header">
+      <div className="headerLeft">
+        <div className="menuBtn">
+          <button onClick={() => setSidebarOpen(!sidebarOpen)}>
+            {sidebarOpen ? <X /> : <Menu />}
+          </button>
+        </div>
+      </div>
       <h1 className="headerTitle">Tracking Delivery</h1>
       <button className="logoutBtn" onClick={handleLogout}>
         <LogOut size={18} />
@@ -21,5 +29,6 @@ const Header = () => {
     </div>
   );
 };
+
 
 export default Header;
