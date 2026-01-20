@@ -131,6 +131,7 @@ model Lorry {
 model Driver {
   id       Int   @id @default(autoincrement())
   name     String
+  phone    String?
   lorry    Lorry @relation(fields: [lorryId], references: [id])
   lorryId  Int
 
