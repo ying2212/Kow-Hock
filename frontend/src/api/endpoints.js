@@ -38,4 +38,9 @@ export const getStoreById = (id) => api.get(`/api/stores/${id}`);
 export const createStore = (data) => api.post("/api/stores", data);
 export const updateStore = (id, data) => api.put(`/api/stores/${id}`, data);
 
-
+// ===== FUEL =====
+export const getAllFuels = () => api.get("/api/fuels");
+export const getFuelsByDriver = (driverId) => api.get(`/api/fuels/driver/${driverId}`);
+export const createFuel = (data) => api.post("/api/fuels", data);
+export const updateFuel = (id, data) => api.put(`/api/fuels/${id}`, data);
+export const deleteFuel = (id) => api.delete(`/api/fuels/${id}`);

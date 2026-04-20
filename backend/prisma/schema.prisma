@@ -126,6 +126,7 @@ model Lorry {
   deliveries Delivery[]
   gpsLogs    GpsLog[]
   drivers    Driver[]
+  fuels      Fuel[]
 }
 
 model Driver {
@@ -136,6 +137,7 @@ model Driver {
   lorryId  Int
 
   deliveries Delivery[]
+  fuels     Fuel[]
 }
 
 model Delivery {
@@ -156,4 +158,21 @@ model GpsLog {
   latitude  Float
   longitude Float
   timestamp DateTime @default(now())
+}
+
+model Fuel {
+  id        Int     @id @default(autoincrement())
+  lorry     Lorry   @relation(fields: [lorryId], references: [id])
+  driver    Driver  @relation(fields: [driverId], references: [id])
+  driverId  Int
+  lorryId   Int
+  liters    Float
+  pricePerLiter Float
+  price     Float
+  odometer  Float?
+  station   String?
+  receiptUrl String?
+  date      DateTime @default(now())
+  createdAt DateTime @default(now())
+
 }
