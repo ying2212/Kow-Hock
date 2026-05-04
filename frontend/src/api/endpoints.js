@@ -17,7 +17,7 @@ export const deleteProduct = (id) => api.delete(`/api/products/${id}`);
 
 // ===== ORDER =====
 export const createOrder = (data) => api.post("/api/orders", data);
-export const getAllOrders = () => api.get("/api/orders");
+export const getAllOrders = (params) => api.get("/api/orders", { params });
 export const getOrder = (id) => api.get(`/api/orders/${id}`);
 export const updateOrderStatus = (id, data) =>
   api.patch(`/api/orders/${id}/status`, data);
@@ -26,13 +26,13 @@ export const updateOrderStatus = (id, data) =>
 export const getAllDeliveries = () => api.get("/api/deliveries");
 export const createDelivery = (data) => api.post("/api/deliveries", data);
 export const updateDeliveryStatus = (id, data) =>
-  api.patch(`/api/deliveries/${id}/status`, data); 
+  api.patch(`/api/deliveries/${id}/status`, data);
 
 // ===== DRIVER =====
-export const getAllDrivers = () => api.get("/api/drivers");
+export const getAllDrivers = (params) => api.get("/api/drivers", { params }); // ← fixed
 export const createDriver = (data) => api.post("/api/drivers", data);
 
-// ==== STORE =====
+// ===== STORE =====
 export const getAllStores = () => api.get("/api/stores");
 export const getStoreById = (id) => api.get(`/api/stores/${id}`);
 export const createStore = (data) => api.post("/api/stores", data);
@@ -44,3 +44,9 @@ export const getFuelsByDriver = (driverId) => api.get(`/api/fuels/driver/${drive
 export const createFuel = (data) => api.post("/api/fuels", data);
 export const updateFuel = (id, data) => api.put(`/api/fuels/${id}`, data);
 export const deleteFuel = (id) => api.delete(`/api/fuels/${id}`);
+
+// ===== ANALYTICS =====
+export const getAnalyticsSummary  = (days) => api.get("/api/analytics/summary", { params: { days } });
+export const getDeliveriesPerDay  = (days) => api.get("/api/analytics/deliveries-per-day", { params: { days } });
+export const getFuelTrend         = (days) => api.get("/api/analytics/fuel-trend", { params: { days } });
+export const getDriverUtilization = ()     => api.get("/api/analytics/driver-utilization");

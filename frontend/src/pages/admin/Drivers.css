@@ -1,7 +1,10 @@
 .driversContainer {
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
   padding: 24px;
+  box-sizing: border-box;
 }
-
 .driverForm {
   display: flex;
   gap: 12px;
@@ -184,4 +187,51 @@
 .driverPlaceholder {
   text-align: center;
   color: #9ca3af;
+}
+
+.fuelCard {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+.fuelCard[data-pending="true"] {
+  opacity: 0.6;
+  border-left: 3px solid #BA7517;
+}
+
+.muted { color: #9ca3af; font-size: 13px; }
+
+.primaryBtn.small {
+  padding: 6px 12px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.fuelForm {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.fuelForm input {
+  padding: 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.content {
+  display: flex;
+  gap: 24px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
 }

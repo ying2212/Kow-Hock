@@ -5,28 +5,20 @@ import * as Yup from "yup";
 import { getAllDrivers, createDriver } from "../../api/endpoints";
 import DriverDetails from "./DriverDetails";
 import "./Drivers.css";
+import { useCallback } from "react";
+import { useInfiniteScroll } from "../../hooks/useInfiniteScroll";
 
 const Drivers = () => {
-  const [drivers, setDrivers] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [selectedDriver, setSelectedDriver] = useState(null);
 
-  useEffect(() => {
-    fetchDrivers();
-  }, []);
+  const fetchDriverPage = useCallback(
+    (page, limit) => getAllDrivers({ page, limit }),
+    []
+  );
 
-  const fetchDrivers = async () => {
-    try {
-      setLoading(true);
-      const response = await getAllDrivers();
-      setDrivers(response.data);
-    } catch (err) {
-      console.error("Failed to fetch drivers", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  const { items: drivers, loading, sentinelRef } =
+    useInfiniteScroll(fetchDriverPage);
+    
   const getStatusClass = (status) => {
     const classes = {
       IDLE: "idle",
@@ -44,9 +36,10 @@ const Drivers = () => {
 
   const handleSubmit = async (values, { resetForm }) => {
     try {
-      const response = await createDriver(values);
-      setDrivers((prev) => [...prev, response.data]);
+      await createDriver(values);
       resetForm();
+  
+      window.location.reload(); 
     } catch (err) {
       console.error("Failed to add driver", err);
     }
@@ -80,7 +73,7 @@ const Drivers = () => {
       <div className="content">
         {/* LEFT: Driver list */}
         <div className="list">
-          {loading && <p>Loading drivers...</p>}
+          {loading && drivers.length === 0 && <p>Loading drivers...</p>}
 
           {drivers.map((driver) => (
             <div
@@ -109,6 +102,22 @@ const Drivers = () => {
               </span>
             </div>
           ))}
+
+          {/* 👇 THIS triggers loading next page */}
+          <div ref={sentinelRef} style={{ height: 1 }} />
+
+          {loading && drivers.length > 0 && (
+            <p
+              style={{
+                textAlign: "center",
+                color: "#9ca3af",
+                padding: "12px",
+                fontSize: "13px",
+              }}
+            >
+              Loading more...
+            </p>
+          )}
         </div>
 
         {/* RIGHT: Driver details */}

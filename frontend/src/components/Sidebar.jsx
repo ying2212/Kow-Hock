@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Package, Truck, Users, Settings, Inbox, Search } from 'lucide-react';
+import { Package, Truck, Users, Settings, Inbox, Search, BarChart2 } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.css';
 
@@ -38,6 +38,9 @@ const Sidebar = ({ isOpen }) => {
           </NavLink>
           <NavLink to="/admin/drivers" className={({ isActive }) => isActive ? 'active' : ''}>
             <Truck size={18} /> Drivers
+          </NavLink>
+          <NavLink to="/admin/analytics" className={({ isActive }) => isActive ? 'active' : ''}>
+            <BarChart2 size={18} /> Analytics
           </NavLink>
           <NavLink to="/admin/customers" className={({ isActive }) => isActive ? 'active' : ''}>
             <Users size={18} /> Customers

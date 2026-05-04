@@ -45,8 +45,7 @@ export const createFuel = async (req, res) => {
       console.error(err);
       res.status(500).json({ message: "Failed to create fuel record" });
     }
-  };
-  
+};  
 
 export const updateFuel = async (req, res) => {
     try {
