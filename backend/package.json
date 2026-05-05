@@ -14,6 +14,7 @@
     "@prisma/client": "^6.19.2",
     "cors": "^2.8.5",
     "express": "^5.2.1",
+    "geolib": "^3.3.14",
     "twilio": "^5.11.2"
   },
   "devDependencies": {

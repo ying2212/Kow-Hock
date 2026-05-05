@@ -1,0 +1,22 @@
+-- CreateTable
+CREATE TABLE "Fuel" (
+    "id" SERIAL NOT NULL,
+    "driverId" INTEGER NOT NULL,
+    "lorryId" INTEGER NOT NULL,
+    "liters" DOUBLE PRECISION NOT NULL,
+    "pricePerLiter" DOUBLE PRECISION NOT NULL,
+    "price" DOUBLE PRECISION NOT NULL,
+    "odometer" DOUBLE PRECISION,
+    "station" TEXT,
+    "receiptUrl" TEXT,
+    "date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Fuel_pkey" PRIMARY KEY ("id")
+);
+
+-- AddForeignKey
+ALTER TABLE "Fuel" ADD CONSTRAINT "Fuel_lorryId_fkey" FOREIGN KEY ("lorryId") REFERENCES "Lorry"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Fuel" ADD CONSTRAINT "Fuel_driverId_fkey" FOREIGN KEY ("driverId") REFERENCES "Driver"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

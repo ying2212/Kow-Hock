@@ -4,6 +4,7 @@ import AdminLayout from "./pages/admin/AdminLayout";
 import Orders from "./pages/admin/Orders";
 import Drivers from "./pages/admin/drivers";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Analytics from "./pages/admin/Analytics";
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
         <Route path="customers" element={<div>Customers Page</div>} />
         <Route path="inbox" element={<div>Inbox Page</div>} />
         <Route path="settings" element={<div>Settings Page</div>} />
+        <Route path="analytics" element={<Analytics />} />
+
       </Route>
 
       {/* Default redirect */}
